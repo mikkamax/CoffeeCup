@@ -23,10 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void submitOrder(View view) {
-        doDisplay();
-    }
-
     public void doIncrement(View view) {
         quantity++;
         doDisplay();
@@ -40,12 +36,20 @@ public class MainActivity extends AppCompatActivity {
         doDisplay();
     }
 
+    public void createOrderSummary(View view) {
+        String summary = "Name: Mike Pashkov\n" +
+                "Quantity: " + quantity + "\n" +
+                "Total: $" + quantity * price + "\n" +
+                "Thanks!";
+        displayPrice(summary);
+    }
+
     public void doDisplay() {
-        display(quantity);
+        displayQuantity(quantity);
         displayPrice(quantity * price);
     }
 
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText(String.valueOf(number));
     }
@@ -53,5 +57,10 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int price) {
         TextView priceTextView = findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance(Locale.US).format(price));
+    }
+
+    private void displayPrice(String summary) {
+        TextView priceTextView = findViewById(R.id.price_text_view);
+        priceTextView.setText(summary);
     }
 }
