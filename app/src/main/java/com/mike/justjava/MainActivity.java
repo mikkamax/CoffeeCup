@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void doIncrement(View view) {
         quantity++;
-        doDisplay();
+        displayQuantity();
     }
 
     public void doDecrement(View view) {
@@ -33,34 +33,27 @@ public class MainActivity extends AppCompatActivity {
         if (quantity < 0) {
             quantity = 0;
         }
-        doDisplay();
+        displayQuantity();
     }
 
-    public void createOrderSummary(View view) {
-        String summary = "Name: Mike Pashkov\n" +
-                "Quantity: " + quantity + "\n" +
-                "Total: $" + quantity * price + "\n" +
-                "Thanks!";
-        displayPrice(summary);
-    }
-
-    public void doDisplay() {
-        displayQuantity(quantity);
-        displayPrice(quantity * price);
-    }
-
-    private void displayQuantity(int number) {
+    private void displayQuantity() {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText(String.valueOf(number));
+        quantityTextView.setText(String.valueOf(quantity));
     }
 
-    private void displayPrice(int price) {
-        TextView priceTextView = findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance(Locale.US).format(price));
+    public void displayOrderSummary(View view) {
+        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(createOrderSummary());
     }
 
-    private void displayPrice(String summary) {
-        TextView priceTextView = findViewById(R.id.price_text_view);
-        priceTextView.setText(summary);
+    private int calculateOrder() {
+        return quantity * price;
+    }
+
+    private String createOrderSummary() {
+        return "Name: Mike Pashkov\n" +
+                "Quantity: " + quantity + "\n" +
+                "Total: " + NumberFormat.getCurrencyInstance(Locale.US).format(calculateOrder()) + "\n" +
+                "Thanks!";
     }
 }
