@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantity"
+        android:text="@string/quantity"
         android:textAllCaps="true"
         android:layout_marginBottom="16dp"
         android:textColor="@android:color/darker_gray" />
@@ -25,13 +24,13 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:onClick="doDecrement"
-            android:text="-" />
+            android:text="@string/minus" />
 
         <TextView
             android:id="@+id/quantity_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/zero"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:layout_marginLeft="8dp"
@@ -42,14 +41,14 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:onClick="doIncrement"
-            android:text="+" />
+            android:text="@string/plus" />
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price"
+        android:text="@string/price"
         android:textAllCaps="true"
         android:layout_marginTop="16dp"
         android:textColor="@android:color/darker_gray" />
@@ -60,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="$0.00"
+        android:text="@string/zero_price"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -68,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="createOrderSummary"
-        android:text="Order"
+        android:text="@string/order"
         android:textAllCaps="true" />
 
 </LinearLayout>
