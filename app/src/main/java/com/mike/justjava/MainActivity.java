@@ -4,6 +4,7 @@ package com.mike.justjava;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String createOrderSummary() {
         return "Name: Mike Pashkov\n" +
+                "Add whipped cream: " + ((CheckBox) findViewById(R.id.toppings_cream)).isChecked() + "\n" +
                 "Quantity: " + quantity + "\n" +
                 "Total: " + NumberFormat.getCurrencyInstance(Locale.US).format(calculateOrder()) + "\n" +
                 "Thanks!";
