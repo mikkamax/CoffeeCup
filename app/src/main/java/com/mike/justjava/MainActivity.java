@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,22 +19,32 @@ import java.util.Locale;
  */
 public class MainActivity extends AppCompatActivity {
     private int quantity;
+    private int minOrder;
+    private int maxOrder;
+    private int basePrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        quantity = getResources().getInteger(R.integer.baseAmountOfCups);
+        minOrder = getResources().getInteger(R.integer.minimumAmountOfCups);
+        maxOrder = getResources().getInteger(R.integer.maximumAmountOfCups);
+        basePrice = getResources().getInteger(R.integer.basePrice);
     }
 
     public void doIncrement(View view) {
-        quantity++;
+        if (++quantity > maxOrder) {
+            quantity = maxOrder;
+            Toast.makeText(this, getResources().getString(R.string.orderMaximum, maxOrder), Toast.LENGTH_SHORT).show();
+        }
         displayQuantity();
     }
 
     public void doDecrement(View view) {
-        quantity--;
-        if (quantity < 0) {
-            quantity = 0;
+        if (--quantity < minOrder) {
+            quantity = minOrder;
+            Toast.makeText(this, getResources().getString(R.string.orderMinimum, minOrder), Toast.LENGTH_SHORT).show();
         }
         displayQuantity();
     }
@@ -59,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int calculateOrder(boolean hasWhippedCream, boolean hasChocolate) {
-        int basePrice = 5;
         int price = basePrice + (hasWhippedCream ? 1 : 0) + (hasChocolate ? 2 : 0);
         return quantity * price;
     }
