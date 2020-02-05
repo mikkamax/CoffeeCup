@@ -17,7 +17,7 @@ import java.util.Locale;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    private int quantity, price = 5;
+    private int quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +45,31 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayOrderSummary(View view) {
         TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(createOrderSummary());
+        EditText nameEditText = findViewById(R.id.name_edit_text);
+        CheckBox toppingWhippedCream = findViewById(R.id.toppings_cream);
+        CheckBox toppingChocolate = findViewById(R.id.toppings_chocolate);
+
+        String customerName = nameEditText.getText().toString().trim();
+        boolean hasWhippedCream = toppingWhippedCream.isChecked();
+        boolean hasChocolate = toppingChocolate.isChecked();
+        int total = calculateOrder(hasWhippedCream, hasChocolate);
+
+        String orderSummary = createOrderSummary(customerName, hasWhippedCream, hasChocolate, total);
+        orderSummaryTextView.setText(orderSummary);
     }
 
-    private int calculateOrder() {
+    private int calculateOrder(boolean hasWhippedCream, boolean hasChocolate) {
+        int basePrice = 5;
+        int price = basePrice + (hasWhippedCream ? 1 : 0) + (hasChocolate ? 2 : 0);
         return quantity * price;
     }
 
-    private String createOrderSummary() {
-        return "Name: " + ((EditText) findViewById(R.id.name_edit_text)).getText().toString().trim() + "\n" +
-                "Add whipped cream: " + ((CheckBox) findViewById(R.id.toppings_cream)).isChecked() + "\n" +
-                "Add chocolate: " + ((CheckBox) findViewById(R.id.toppings_chocolate)).isChecked() + "\n" +
+    private String createOrderSummary(String name, boolean hasWhippedCream, boolean hasChocolate, int total) {
+        return "Name: " + name + "\n" +
+                "Add whipped cream: " + hasWhippedCream + "\n" +
+                "Add chocolate: " + hasChocolate + "\n" +
                 "Quantity: " + quantity + "\n" +
-                "Total: " + NumberFormat.getCurrencyInstance(Locale.US).format(calculateOrder()) + "\n" +
+                "Total: " + NumberFormat.getCurrencyInstance(Locale.US).format(total) + "\n" +
                 "Thanks!";
     }
 }
