@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private String createOrderSummary() {
         return "Name: Mike Pashkov\n" +
                 "Add whipped cream: " + ((CheckBox) findViewById(R.id.toppings_cream)).isChecked() + "\n" +
+                "Add chocolate: " + ((CheckBox) findViewById(R.id.toppings_chocolate)).isChecked() + "\n" +
                 "Quantity: " + quantity + "\n" +
                 "Total: " + NumberFormat.getCurrencyInstance(Locale.US).format(calculateOrder()) + "\n" +
                 "Thanks!";
