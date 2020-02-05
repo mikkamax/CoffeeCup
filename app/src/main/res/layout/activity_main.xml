@@ -11,6 +11,14 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <EditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/name"
+            android:inputType="textCapWords|textNoSuggestions" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

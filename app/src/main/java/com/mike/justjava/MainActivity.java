@@ -5,6 +5,7 @@ package com.mike.justjava;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String createOrderSummary() {
-        return "Name: Mike Pashkov\n" +
+        return "Name: " + ((EditText) findViewById(R.id.name_edit_text)).getText().toString().trim() + "\n" +
                 "Add whipped cream: " + ((CheckBox) findViewById(R.id.toppings_cream)).isChecked() + "\n" +
                 "Add chocolate: " + ((CheckBox) findViewById(R.id.toppings_chocolate)).isChecked() + "\n" +
                 "Quantity: " + quantity + "\n" +
