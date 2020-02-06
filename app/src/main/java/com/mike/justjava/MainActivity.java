@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
         String orderSummary = createOrderSummary(customerName, hasWhippedCream, hasChocolate, total);
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto: mikkamax@yandex.ru"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Order for coffee");
+        intent.setData(Uri.parse("mailto: " + getResources().getString(R.string.orderEmail)));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.orderSubject));
         intent.putExtra(Intent.EXTRA_TEXT, orderSummary);
 
 
@@ -85,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String createOrderSummary(String name, boolean hasWhippedCream, boolean hasChocolate, int total) {
-        return "Name: " + name + "\n" +
-                "Add whipped cream: " + hasWhippedCream + "\n" +
-                "Add chocolate: " + hasChocolate + "\n" +
-                "Quantity: " + quantity + "\n" +
-                "Total: " + NumberFormat.getCurrencyInstance(Locale.US).format(total) + "\n" +
-                "Thanks!";
+        return  getString(R.string.nameForTheOrder, name) + "\n" +
+                getString(R.string.add_cream) + ": " + (hasWhippedCream ? getString(R.string.yes) : getString(R.string.no)) + "\n" +
+                getString(R.string.add_choco) + ": " + (hasChocolate  ? getString(R.string.yes) : getString(R.string.no)) + "\n" +
+                getString(R.string.quantity) + ": " + quantity + "\n" +
+                getString(R.string.total) + ": " + NumberFormat.getCurrencyInstance(Locale.US).format(total) + "\n" +
+                getString(R.string.thanks);
     }
 }
