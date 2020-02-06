@@ -1,4 +1,4 @@
-package com.mike.justjava;
+package com.mike.coffeecup;
 
 import android.content.Context;
 
