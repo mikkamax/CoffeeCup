@@ -2,6 +2,8 @@ package com.mike.justjava;
 
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -54,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText(String.valueOf(quantity));
     }
 
-    public void displayOrderSummary(View view) {
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
+    public void submitOrder(View view) {
         EditText nameEditText = findViewById(R.id.name_edit_text);
         CheckBox toppingWhippedCream = findViewById(R.id.toppings_cream);
         CheckBox toppingChocolate = findViewById(R.id.toppings_chocolate);
@@ -66,7 +67,16 @@ public class MainActivity extends AppCompatActivity {
         int total = calculateOrder(hasWhippedCream, hasChocolate);
 
         String orderSummary = createOrderSummary(customerName, hasWhippedCream, hasChocolate, total);
-        orderSummaryTextView.setText(orderSummary);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto: mikkamax@yandex.ru"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Order for coffee");
+        intent.putExtra(Intent.EXTRA_TEXT, orderSummary);
+
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     private int calculateOrder(boolean hasWhippedCream, boolean hasChocolate) {
