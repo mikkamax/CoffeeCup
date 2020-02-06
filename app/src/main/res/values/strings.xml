@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" translatable="false">Just Java</string>
+    <string name="app_name" translatable="false">Coffee Cup</string>
     <string name="name">Name</string>
     <string name="nameForTheOrder">Name: <xliff:g
         id="name" exmaple="Mike">%s</xliff:g></string>
